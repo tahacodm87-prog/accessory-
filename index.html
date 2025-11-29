@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه اکسسوری</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #fff;
+        margin: 0;
+        perspective: 1000px;
+    }
+
+    /* ساعت و تاریخ */
+    #clock {
+        font-size: 2em;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    /* منوی سه بعدی */
+    nav {
+        width: 300px;
+        margin: 20px auto;
+        background: #222;
+        border-radius: 10px;
+        padding: 10px;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+    }
+
+    nav:hover {
+        transform: rotateY(15deg) rotateX(5deg);
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        padding: 10px;
+        cursor: pointer;
+        background: #333;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    nav ul li:hover {
+        background: #555;
+    }
+
+    nav ul li ul {
+        display: none;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+    nav ul li:hover ul {
+        display: block;
+    }
+
+    /* لینک های ارتباطی */
+    .contacts {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .contacts a {
+        display: inline-block;
+        margin: 5px 10px;
+        color: #0af;
+        text-decoration: none;
+    }
+
+    .cart {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .cart button {
+        padding: 10px 20px;
+        background: #0af;
+        border: none;
+        color: #111;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .cart button:hover {
+        background: #09c;
+    }
+</style>
+</head>
+<body>
+
+<div id="clock">00:00:00</div>
+
+<nav>
+    <ul>
+        <li>اکسسوری
+            <ul>
+                <li>گردنبند</li>
+                <li>دستبند</li>
+                <li>ساعت</li>
+                <li>انگشتر</li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div class="contacts">
+    <p>شماره تماس: <a href="tel:09199921342">09199921342</a></p>
+    <p><a href="https://t.me/09199921342" target="_blank">تلگرام</a> | 
+       <a href="https://wa.me/989199921342" target="_blank">واتساپ</a> | 
+       <a href="https://instagram.com/tyinthehood" target="_blank">اینستاگرام</a></p>
+</div>
+
+<div class="cart">
+    <button>سبد خرید</button>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString('fa-IR');
+        const date = now.toLocaleDateString('fa-IR');
+        document.getElementById('clock').textContent = date + ' ' + time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+</body>
+</html>
