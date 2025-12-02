@@ -1,96 +1,159 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootik_official</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootik_official</title>
 
-    <!-- ایجاد manifest در لحظه -->
-    <script>
-        const manifest = {
-            name: "Bootik_official",
-            short_name: "Bootik",
-            start_url: "./",
-            display: "standalone",
-            background_color: "#000000",
-            theme_color: "#9000ff",
-            icons: [{
-                src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAA...", 
-                sizes: "512x512",
-                type: "image/png"
-            }]
-        };
+<style>
+    body { margin:0; background:#000; color:#fff; font-family:sans-serif; }
 
-        const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
-        const manifestURL = URL.createObjectURL(blob);
+    /* HEADER */
+    header {
+        padding:25px;
+        text-align:center;
+        font-size:32px;
+        font-weight:bold;
+        background:linear-gradient(90deg,#000,#111,#000);
+        letter-spacing:3px;
+        animation: glow 3s infinite alternate;
+    }
+    @keyframes glow { from{color:#9000ff;} to{color:#fff;} }
 
-        const link = document.createElement("link");
-        link.rel = "manifest";
-        link.href = manifestURL;
-        document.head.appendChild(link);
-    </script>
+    /* SLIDER */
+    .slider {
+        width:100%; height:280px; overflow:hidden; position:relative;
+        margin-top:20px;
+    }
+    .slides {
+        width:500%; height:100%;
+        display:flex;
+        animation: slide 12s infinite;
+    }
+    .slides img { width:100%; object-fit:cover; opacity:0.7; }
+    @keyframes slide {
+        0% {margin-left:0;}
+        20% {margin-left:0;}
+        25% {margin-left:-100%;}
+        45% {margin-left:-100%;}
+        50% {margin-left:-200%;}
+        70% {margin-left:-200%;}
+        75% {margin-left:-300%;}
+        95% {margin-left:-300%;}
+        100% {margin-left:-400%;}
+    }
 
-    <style>
-        body { margin:0; background:#0a0a0a; color:#fff; font-family:sans-serif; }
-        header { padding:20px; text-align:center; background:#111; font-size:28px; font-weight:bold; border-bottom:1px solid #222; }
-        .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; padding:20px; }
-        .card { background:#111; border:1px solid #222; padding:15px; border-radius:10px; text-align:center; }
-        img { width:100%; border-radius:10px; }
-        button { width:100%; padding:10px; border:none; border-radius:8px; cursor:pointer; background:#9000ff; color:#fff; font-size:16px; }
-    </style>
+    /* PRODUCTS */
+    h2 { text-align:center; margin-top:40px; font-size:26px; opacity:0.9; }
+    .products {
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:20px;
+        padding:20px;
+    }
+
+    .card {
+        background:#111;
+        border:1px solid #222;
+        padding:15px;
+        border-radius:12px;
+        text-align:center;
+        transition:0.3s;
+        animation: fade 1.5s;
+    }
+    @keyframes fade { from{opacity:0;} to{opacity:1;} }
+
+    .card:hover {
+        transform:scale(1.05);
+        border-color:#9000ff;
+        box-shadow:0 0 15px #9000ff55;
+    }
+
+    img {
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+    }
+
+    button {
+        width:100%;
+        padding:12px;
+        background:#9000ff;
+        border:none;
+        border-radius:8px;
+        color:#fff;
+        font-size:15px;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    button:hover { background:#b34dff; }
+
+    footer {
+        text-align:center;
+        padding:20px;
+        margin-top:40px;
+        font-size:13px;
+        opacity:0.5;
+    }
+</style>
 </head>
 
 <body>
 
-<header>Bootik_official • فروشگاه دارک و گنگ</header>
+<header>Bootik_official • Dark Gang Store</header>
 
+<!-- ====================== SLIDER ====================== -->
+<div class="slider">
+    <div class="slides">
+        <img src="https://via.placeholder.com/1600x500/111/fff?text=Bootik+Dark+Collection">
+        <img src="https://via.placeholder.com/1600x500/111/fff?text=New+Masks">
+        <img src="https://via.placeholder.com/1600x500/111/fff?text=Streetwear+Gang">
+        <img src="https://via.placeholder.com/1600x500/111/fff?text=Exclusive+Drops">
+        <img src="https://via.placeholder.com/1600x500/111/fff?text=Bootik+official">
+    </div>
+</div>
+
+<h2>🔥 جدیدترین محصولات Bootik_official</h2>
+
+<!-- ==================== PRODUCTS (10 ITEMS) ==================== -->
 <section class="products">
 
-    <div class="card">
-        <img src="https://via.placeholder.com/300x300/111/fff?text=Product+1">
-        <h3>محصول ۱</h3>
-        <p>150,000 تومان</p>
-        <button onclick="buy('محصول ۱',150000)">خرید</button>
-    </div>
+<script>
+// ======= PRODUCTS ARRAY (10 ITEMS) =======
+const items = [
+    {name:"ماسک مدل Phantom", price:150000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+1"},
+    {name:"ماسک Skull Edition", price:190000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+2"},
+    {name:"ماسک Ninja Ghost", price:220000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+3"},
+    {name:"هودی Dark Shadow", price:480000, img:"https://via.placeholder.com/300x300/111/fff?text=Hoodie+1"},
+    {name:"هودی Street Gang", price:520000, img:"https://via.placeholder.com/300x300/111/fff?text=Hoodie+2"},
+    {name:"تیشرت BlackNoise", price:250000, img:"https://via.placeholder.com/300x300/111/fff?text=Tshirt+1"},
+    {name:"تیشرت HellMode", price:290000, img:"https://via.placeholder.com/300x300/111/fff?text=Tshirt+2"},
+    {name:"دستکش Tactical", price:160000, img:"https://via.placeholder.com/300x300/111/fff?text=Gloves"},
+    {name:"بَندانا DarkWave", price:120000, img:"https://via.placeholder.com/300x300/111/fff?text=Bandana"},
+    {name:"کیف SideBag Ghost", price:310000, img:"https://via.placeholder.com/300x300/111/fff?text=Bag"}
+];
 
-    <div class="card">
-        <img src="https://via.placeholder.com/300x300/111/fff?text=Product+2">
-        <h3>محصول ۲</h3>
-        <p>220,000 تومان</p>
-        <button onclick="buy('محصول ۲',220000)">خرید</button>
-    </div>
-
-    <div class="card">
-        <img src="https://via.placeholder.com/300x300/111/fff?text=Product+3">
-        <h3>محصول ۳</h3>
-        <p>430,000 تومان</p>
-        <button onclick="buy('محصول ۳',430000)">خرید</button>
-    </div>
+// ====== Render Cards ======
+document.write(
+    items.map(p=>`
+        <div class="card">
+            <img src="${p.img}">
+            <h3>${p.name}</h3>
+            <p>${p.price.toLocaleString()} تومان</p>
+            <button onclick="pay(${p.price}, '${p.name}')">خرید</button>
+        </div>
+    `).join("")
+);
+</script>
 
 </section>
 
-<footer style="text-align:center;color:#666;margin:30px 0;">Bootik_official © 2025</footer>
+<footer>Bootik_official © 2025</footer>
 
+<!-- PAYMENT SYSTEM (Fake/Test - Ready for Zarinpal) -->
 <script>
-function buy(name, price){
-    alert("پرداخت تستی\n" + name + "\n" + price + " تومان");
-    window.location.href = "https://zarinp.al"; 
-}
-</script>
-
-<!-- Service Worker inline -->
-<script>
-const swCode = `
-self.addEventListener("install", e => self.skipWaiting());
-self.addEventListener("activate", e => clients.claim());
-self.addEventListener("fetch", e => {});
-`;
-
-const swBlob = new Blob([swCode], { type: "text/javascript" });
-const swURL = URL.createObjectURL(swBlob);
-
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register(swURL);
+function pay(price, name){
+    alert("پرداخت تستی فعال است.\nمحصول: "+name+"\nقیمت: "+price.toLocaleString()+" تومان");
 }
 </script>
 
